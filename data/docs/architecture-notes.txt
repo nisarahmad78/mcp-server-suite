@@ -1,0 +1,26 @@
+Architecture Notes — MCP Server Suite
+=====================================
+
+Components
+----------
+- server/   The MCP server proper. Pure protocol code: it knows nothing
+            about HTTP or HTML. Tools live in server/tools/, one module
+            per tool, each with a register() function.
+- client/   A FastAPI demo app. It is a real MCP client: it connects to
+            the server over stdio using the official SDK, lists tools
+            through the protocol, and calls them on behalf of the web UI.
+- data/     Sample data only: seed database plus this docs folder. The
+            database file itself is generated and git-ignored.
+
+Design decisions
+----------------
+Protocol first: the web UI never imports tool code directly. Everything
+goes through MCP, so the same server works unchanged with Claude
+Desktop, Cursor, or any other MCP client.
+
+Read-only by default: the sample data tools cannot write. The database
+is opened with SQLite's read-only URI flag as a second line of defence.
+
+Configuration via environment: paths, timeouts, and row limits all come
+from environment variables with project-relative defaults, which keeps
+the same codebase working locally and inside Docker containers.
