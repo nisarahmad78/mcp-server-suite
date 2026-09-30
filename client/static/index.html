@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCP Server Suite — Tool Playground</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>MCP Server Suite</h1>
+    <p class="subtitle">
+      Tool Playground — every call below goes through the Model Context
+      Protocol to the MCP server. The tool list and forms are generated
+      live from the server's advertised schemas.
+    </p>
+  </header>
+
+  <main>
+    <section class="card">
+      <label for="tool-select">Tool</label>
+      <select id="tool-select"></select>
+      <p id="tool-description" class="description"></p>
+
+      <form id="tool-form"></form>
+
+      <button id="run-btn" type="button">Run tool</button>
+      <p id="status" class="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>Result</h2>
+      <pre id="result">Pick a tool and press “Run tool”.</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Server: <code>mcp-server-suite</code> · Transport: stdio / Streamable HTTP · Protocol: MCP</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
