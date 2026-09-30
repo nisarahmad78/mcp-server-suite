@@ -1,0 +1,27 @@
+# MCP Server Suite — demo stack.
+#
+#   docker compose up --build
+#
+# Then open http://localhost:8080 for the tool playground.
+# The MCP server itself is reachable at http://localhost:8000/mcp.
+
+services:
+  server:
+    build: .
+    command: sh -c "python scripts/seed_db.py && python -m server.main"
+    environment:
+      MCP_TRANSPORT: http
+      MCP_PORT: "8000"
+    ports:
+      - "8000:8000"
+
+  client:
+    build: .
+    command: uvicorn client.main:app --host 0.0.0.0 --port 8080
+    environment:
+      MCP_TRANSPORT: http
+      MCP_SERVER_URL: http://server:8000/mcp
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server
