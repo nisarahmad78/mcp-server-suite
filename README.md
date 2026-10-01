@@ -12,6 +12,12 @@ unchanged with Claude Desktop, Cursor, or any other MCP client.
 > IDE, or this demo — discovers them at runtime and calls them in a
 > uniform way.
 
+## Screenshots
+
+![MCP Server Suite UI](docs/screenshot.png)
+
+The demo client's tool playground: the tool picker and input forms are generated live from the MCP server's advertised schemas (here `sqlite_query` is selected), and every call goes through the Model Context Protocol.
+
 ## Features
 
 - **Four real tools** — read-only SQL queries, documentation search, web
